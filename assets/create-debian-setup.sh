@@ -148,7 +148,7 @@ create_mountpoint /system
 #------------------------------------------------------------------------------#
 # looking for GPG keyring used to validate signatures on downloaded packages
 
-keyring_name=debian-archive-keyring.gpg
+keyring_name=ubuntu-archive-keyring.gpg
 keyring=$app_bin/$keyring_name
 if test -f $keyring; then
 	echo "Using keyring for validating packages: $keyring"
@@ -166,7 +166,7 @@ $mnt/usr/bin/cdebootstrap-static --verbose --foreign\
     --flavour=minimal --include=locales $KEYRING \
     --configdir=$mnt/usr/share/cdebootstrap-static \
     --helperdir=$mnt/usr/share/cdebootstrap-static \
-    --arch $arch $release $mnt $mirror || exit
+    --arch $arch precise $mnt http://ports.ubuntu.com/ubuntu-ports || exit
 
 if [ x"$install_on_internal_storage" = xyes ]; then
     mount -o bind /dev $mnt/dev
